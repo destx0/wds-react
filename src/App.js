@@ -1,34 +1,34 @@
-import { useState,useEffect } from "react";
+import React from "react";
+import { useEffect } from "react";
 import "./App.css";
+import searchIcon from "./Search.svg";
 
-// const Person =  (props) => {
-//   return (
-//     <>
-//       <h1>name: {props.name}</h1>
-//       <h2>age: 24</h2>
-//     </>
-//   )
+// eac00bba
 
-// }
-const App = () => {
-  const [counter, setCounter] = useState(0);
+const API_URL = "https://www.omdbapi.com?apikey=eac00bba";
 
+export const App = () => {
+  const searchMovies = async (title) => {
+    const response = await fetch(`${API_URL}&s={title}`);
+    const data = await response.json();
+    console.log(data.Search);
+  };
   useEffect(() => {
-    alert("counter changed to "+ counter)
-  
-    
-    
-  }, [counter])
-  
+    searchMovies("Spiderman");
+  }, []);
+
   return (
-    <div className="App">
-      <button onClick={() => setCounter((prevCount) => prevCount - 1)}>
-        -
-      </button>
-      <h1>{counter}</h1>
-      <button onClick={() => setCounter((prevCount) => prevCount + 1)}>+</button>
+    <div className="app">
+      <h1>movieLAnd</h1>
+      <div className="class">
+        <input
+          placeholder="Search For Movies"
+          value="Superman"
+          onChange={() => {}}
+        />
+        <img src="{searchIcon}" alt="search"   />
+      </div>
     </div>
   );
 };
-
 export default App;
